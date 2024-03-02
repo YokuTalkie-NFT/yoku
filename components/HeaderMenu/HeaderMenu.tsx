@@ -1,4 +1,6 @@
-import { Group, Button, Divider, Box, Burger, Drawer, ScrollArea, rem } from '@mantine/core';
+'use client';
+
+import { Group, Divider, Box, Burger, Drawer, ScrollArea, rem } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import Link from 'next/link';
 import classes from './HeaderMenu.module.css';
