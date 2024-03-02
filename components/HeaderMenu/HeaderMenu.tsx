@@ -56,7 +56,7 @@ export function HeaderMenu() {
 
           <Divider my="sm" />
 
-          <Group justify="center" grow pb="xl" px="md">
+          <Group justify="center" grow pb="md" px="md">
             <ConnectButton />
           </Group>
         </ScrollArea>

@@ -27,6 +27,7 @@ export default function RootLayout({ children }: { children: any }) {
       <body>
         <Providers initialState={initialState}>{children}</Providers>
       </body>
+      {/*<audio src="/background.mp3" autoPlay loop />*/}
     </html>
   );
 }

@@ -1,0 +1,76 @@
+.container {
+  background: url('/background.png') no-repeat center;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.menuContainer {
+  width: 100vw;
+  height: 30vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 rem(20px);
+}
+
+.menuItem {
+  width: rem(100px);
+  height: rem(100px);
+  border-radius: 50%;
+  background: radial-gradient(circle, white 30%, transparent 70%);
+  animation: pulse 2s infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.menuItem:nth-child(2) {
+  align-self: flex-end;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+
+  70% {
+    box-shadow: 0 0 0 rem(10px) rgba(255, 255, 255, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+.menuLabel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  z-index: 100000;
+  width: 200px;
+  height: 100px;
+}
+
+.iconsContainer {
+  position: absolute;
+  width: 100vw;
+  bottom: rem(40px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}

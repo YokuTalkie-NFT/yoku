@@ -1,8 +1,9 @@
-import { arbitrum, mainnet } from 'wagmi/chains';
-import { defaultWagmiConfig } from '@web3modal/wagmi/react/config'
+import { mainnet } from 'wagmi/chains';
+import { defaultWagmiConfig } from '@web3modal/wagmi/react/config';
 
 export const WALLET_CONNECT_PROJECT_ID = '9057656e0d2c91bc145c546e622194c3';
 
+// todo put config in next env file and specify envs
 // 2. Create wagmiConfig
 const metadata = {
   name: 'Web3Modal',
@@ -11,7 +12,7 @@ const metadata = {
   icons: ['https://avatars.githubusercontent.com/u/37784886'],
 };
 
-const chains = [mainnet, arbitrum] as const;
+const chains = [mainnet] as const;
 export const config = defaultWagmiConfig({
   chains, // required
   projectId: WALLET_CONNECT_PROJECT_ID, // required
