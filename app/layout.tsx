@@ -1,26 +1,31 @@
 import '@mantine/core/styles.css';
 import React from 'react';
-import { MantineProvider, ColorSchemeScript } from '@mantine/core';
-import { theme } from '../theme';
+import { ColorSchemeScript } from '@mantine/core';
+import { cookieToInitialState } from 'wagmi';
+import { headers } from 'next/headers';
+import { Providers } from '@/app/providers';
+import { config } from '@/util/constants';
 
 export const metadata = {
-  title: 'Mantine Next.js template',
-  description: 'I am using Mantine with Next.js!',
+  title: 'YokuTalkie NFT',
+  description: 'Mint and meet - NFT is Your Key to Crypto Chats.',
 };
 
 export default function RootLayout({ children }: { children: any }) {
+  const initialState = cookieToInitialState(config, headers().get('cookie'));
+
   return (
     <html lang="en">
       <head>
         <ColorSchemeScript />
-        <link rel="shortcut icon" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
         />
       </head>
       <body>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <Providers initialState={initialState}>{children}</Providers>
       </body>
     </html>
   );
