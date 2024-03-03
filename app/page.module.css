@@ -1,5 +1,6 @@
 .container {
-  background: url('/background.png') no-repeat center;
+  cursor: url("/assets/images/mouse.png");
+  background: url('/assets/images/background.png') no-repeat center;
   background-size: cover;
   position: absolute;
   top: 0;
@@ -10,15 +11,27 @@
   flex-flow: column;
   justify-content: flex-start;
   align-items: center;
+  overflow: hidden;
 }
 
-.menuContainer {
+.menuContainerTop {
   width: 100vw;
   height: 30vh;
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 0 rem(20px);
+  z-index: 100;
+}
+
+.menuContainerBottom {
+  width: 80vw;
+  height: 35vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  padding: 0 rem(20px);
+  z-index: 100;
 }
 
 .menuItem {
@@ -52,18 +65,32 @@
   }
 }
 
+.planetImage {
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  transform: translate(-58%, 42%);
+  height: auto;
+  width: rem(500px);
+  z-index: -1;
+}
+
+.starImage {
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  transform: translate(0, 70%);
+  height: auto;
+  width: rem(200px);
+  z-index: 0;
+}
+
 .menuLabel {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, 50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 10px;
-  border-radius: 10px;
-  z-index: 100000;
-  width: 200px;
-  height: 100px;
+  width: 100vw;
 }
 
 .iconsContainer {
@@ -73,4 +100,5 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  z-index: 5;
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { Group, Box } from '@mantine/core';
+import { Group } from '@mantine/core';
 import classes from './AppHeader.module.css';
 import { AppLogo } from '@/components/AppLogo/AppLogo';
 
