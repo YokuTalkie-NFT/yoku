@@ -4028,7 +4028,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mantine/hooks@npm:7.6.1":
+"@mantine/hooks@npm:^7.6.1":
   version: 7.6.1
   resolution: "@mantine/hooks@npm:7.6.1"
   peerDependencies:
@@ -14571,7 +14571,7 @@ __metadata:
     "@graphql-codegen/typescript": "npm:4.0.1"
     "@graphql-codegen/typescript-resolvers": "npm:4.0.1"
     "@mantine/core": "npm:7.6.1"
-    "@mantine/hooks": "npm:7.6.1"
+    "@mantine/hooks": "npm:^7.6.1"
     "@next/bundle-analyzer": "npm:^14.0.1"
     "@next/eslint-plugin-next": "npm:^14.0.1"
     "@react-spring/web": "npm:^9.7.3"

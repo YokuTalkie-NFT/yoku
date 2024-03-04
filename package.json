@@ -24,7 +24,7 @@
     "@apollo/experimental-nextjs-app-support": "^0.8.0",
     "@apollo/server": "^4.9.3",
     "@mantine/core": "7.6.1",
-    "@mantine/hooks": "7.6.1",
+    "@mantine/hooks": "^7.6.1",
     "@next/bundle-analyzer": "^14.0.1",
     "@react-spring/web": "^9.7.3",
     "@tabler/icons-react": "^2.40.0",

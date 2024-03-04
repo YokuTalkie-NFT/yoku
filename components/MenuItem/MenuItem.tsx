@@ -1,4 +1,5 @@
 import React, { FC, KeyboardEvent } from 'react';
+import { useMediaQuery } from '@mantine/hooks';
 import classes from './MenuItem.module.css';
 import { KeyCode } from '@/util/code.enum';
 
@@ -21,6 +22,7 @@ const MenuItem: FC<MenuItemProps> = ({
   onMouseHovering,
   onMouseLeaving,
 }) => {
+  const isMobile = useMediaQuery('(max-width: 768px)');
   const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === keyCode) {
       onClick(item);
@@ -35,9 +37,11 @@ const MenuItem: FC<MenuItemProps> = ({
       tabIndex={index}
       role="button"
       aria-label={`Activate ${item}`}
-      onMouseEnter={() => onMouseHovering(item)}
-      onMouseLeave={() => onMouseLeaving(item)}
-    />
+      onMouseEnter={() => !isMobile && onMouseHovering(item)}
+      onMouseLeave={() => !isMobile && onMouseLeaving(item)}
+    >
+      {isMobile && <div className={classes.label}>{item.toUpperCase()}</div>}
+    </div>
   );
 };
 
