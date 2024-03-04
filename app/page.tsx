@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSpring, animated } from '@react-spring/web';
 import { Image } from '@mantine/core';
-import debounce from 'lodash/debounce';
 import { useWeb3Modal } from '@web3modal/wagmi/react';
+import { throttle } from 'lodash';
 import { KukuIcon } from '@/components/Icons/KukuIcon';
 import { YoyoIcon } from '@/components/Icons/YoyoIcon';
 import { AppHeader } from '@/components/AppHeader/AppHeader';
@@ -19,12 +19,12 @@ export default function HomePage() {
   const [activeMenu, setActiveMenu] = useState('');
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  const setActiveMenuDebounced = useCallback(debounce(setActiveMenu, 100, { leading: false }), []);
+  // 创建一个ref数组，用于存储每个菜单项的ref
+  const menuItemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const fadeIn = useSpring({
     to: { opacity: 1, transform: 'translate(-50%, -50%)' },
     from: { opacity: 0, transform: 'translate(-50%, 0%)' },
-    reset: true,
     reverse: activeMenu === '',
   });
 
@@ -48,17 +48,30 @@ export default function HomePage() {
   };
 
   useEffect(() => {
-    const handleMouseMove = (e: any) => {
-      setMousePosition({
-        x: e.clientX - window.innerWidth / 2,
-        y: e.clientY - window.innerHeight / 2,
+    const handleMouseMove = (e: MouseEvent) => {
+      const x = e.clientX;
+      const y = e.clientY;
+      setMousePosition({ x, y });
+
+      const foundMenuItem = menuItems.find((_, index) => {
+        const menuItemElement = menuItemRefs.current[index];
+        if (!menuItemElement) return false;
+
+        const { left, top, right, bottom } = menuItemElement.getBoundingClientRect();
+        return x >= left && x <= right && y >= top && y <= bottom;
       });
+
+      if (foundMenuItem !== activeMenu) {
+        setActiveMenu(foundMenuItem || '');
+      }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    const throttled = throttle(handleMouseMove, 100);
+
+    window.addEventListener('mousemove', throttled);
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mousemove', throttled);
     };
   }, []);
 
@@ -76,9 +89,8 @@ export default function HomePage() {
           <div
             key={index}
             className={classes.menuItem}
-            onMouseEnter={() => setActiveMenuDebounced(item)}
-            onMouseLeave={() => setActiveMenu('')}
-            onClick={() => handleMenuItemClick(item)} // 添加点击事件
+            ref={(el) => (menuItemRefs.current[index] = el)} // 将元素存储到ref数组中
+            onClick={() => handleMenuItemClick(item)}
           />
         ))}
       </div>
@@ -87,22 +99,20 @@ export default function HomePage() {
           <div
             key={index}
             className={classes.menuItem}
-            onMouseEnter={() => setActiveMenuDebounced(item)}
-            onMouseLeave={() => setActiveMenu('')}
-            onClick={() => handleMenuItemClick(item)} // 添加点击事件
+            ref={(el) => (menuItemRefs.current[index + 2] = el)} // 注意这里的index需要加2
+            onClick={() => handleMenuItemClick(item)}
           />
         ))}
       </div>
-      {activeMenu && (
-        <animated.div style={fadeIn} className={classes.menuLabel}>
+      <animated.div style={fadeIn} className={classes.menuLabel}>
+        {activeMenu && (
           <Image fit="contain" height={100} src={`/assets/images/${activeMenu}.png`} />
-        </animated.div>
-      )}
+        )}
+      </animated.div>
       <div className={classes.iconsContainer}>
         <YoyoIcon size={180} />
         <KukuIcon size={230} />
       </div>
-      <audio src="/assets/audios/background.mp3" autoPlay loop />
     </div>
   );
 }

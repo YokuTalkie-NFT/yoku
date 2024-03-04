@@ -1,5 +1,6 @@
 import { useSpring, animated } from '@react-spring/web';
 import { useEffect } from 'react';
+import { throttle } from 'lodash';
 import { IconSvgProps } from '@/types';
 
 export const KukuIcon: React.FC<IconSvgProps> = ({ size = 300 }) => {
@@ -31,10 +32,12 @@ export const KukuIcon: React.FC<IconSvgProps> = ({ size = 300 }) => {
       });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    const throttledHandleMouseMove = throttle(handleMouseMove, 100);
+
+    window.addEventListener('mousemove', throttledHandleMouseMove);
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mousemove', throttledHandleMouseMove);
     };
   }, [set]);
 
