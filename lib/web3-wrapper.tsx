@@ -17,7 +17,7 @@ if (!config) throw new Error('Project ID is not defined');
 createWeb3Modal({
   wagmiConfig: config,
   projectId: WALLET_CONNECT_PROJECT_ID,
-  enableAnalytics: true, // Optional - defaults to your Cloud configuration
+  enableAnalytics: false,
 });
 
 export function Web3Wrapper({

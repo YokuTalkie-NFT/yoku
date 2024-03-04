@@ -9,6 +9,7 @@ export function AppHeader() {
     <header className={classes.header}>
       <Group justify="space-between" h="100%">
         <AppLogo />
+        <w3m-account-button />
       </Group>
     </header>
   );
