@@ -34,7 +34,7 @@
   z-index: 100;
 }
 
-.iconsContainer {
+.characterContainer {
   position: absolute;
   width: 100vw;
   bottom: rem(40px);

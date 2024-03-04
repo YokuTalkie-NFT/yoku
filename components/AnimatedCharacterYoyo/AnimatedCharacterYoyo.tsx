@@ -6,11 +6,13 @@ import { FC, useEffect } from 'react';
 interface AnimatedCharacterYoyoProps {
   mousePosition: { x: number; y: number };
   size?: number;
+  active: boolean;
 }
 
 export const AnimatedCharacterYoyo: FC<AnimatedCharacterYoyoProps> = ({
   mousePosition,
   size = 180,
+  active,
 }) => {
   const moveLimit = 5;
 
@@ -93,29 +95,44 @@ export const AnimatedCharacterYoyo: FC<AnimatedCharacterYoyoProps> = ({
           rx="5.7"
           ry="4.32"
         />
-        <g id="yoyomouse1">
+        {active ? (
           <path
+            id="yoyomouse2"
             style={{
-              strokeWidth: '4.16px',
+              fill: '#bb4347',
               stroke: '#000',
               strokeLinecap: 'round',
               strokeLinejoin: 'round',
+              strokeWidth: '2.69px',
             }}
-            d="M138.7,101.01s-6.3,2.54-15.94,0"
+            d="M130.12,99.2s-6.25,3.05-5.84,11.55c.41,8.5,5.5,9.21,7.77,9.04,2.27-.17,9.98-3.01,8.8-9.21-1.17-6.2-5.64-12.02-10.73-11.39Z"
           />
-          <line
-            style={{
-              stroke: '#000',
-              strokeLinecap: 'round',
-              strokeMiterlimit: 10,
-              strokeWidth: '3.12px',
-            }}
-            x1="131.58"
-            y1="93.08"
-            x2="129.86"
-            y2="102.29"
-          />
-        </g>
+        ) : (
+          <g id="yoyomouse1">
+            <path
+              style={{
+                strokeWidth: '4.16px',
+                stroke: '#000',
+                strokeLinecap: 'round',
+                strokeLinejoin: 'round',
+              }}
+              d="M138.7,101.01s-6.3,2.54-15.94,0"
+            />
+            <line
+              style={{
+                stroke: '#000',
+                strokeLinecap: 'round',
+                strokeMiterlimit: 10,
+                strokeWidth: '3.12px',
+              }}
+              x1="131.58"
+              y1="93.08"
+              x2="129.86"
+              y2="102.29"
+            />
+          </g>
+        )}
+
         <g id="yoyohands1">
           <path
             style={{

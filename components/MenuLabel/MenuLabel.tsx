@@ -4,31 +4,32 @@ import { FC, useEffect, useState } from 'react';
 import classes from './MenuLabel.module.css';
 
 export const MenuLabel: FC<{
-  visible: boolean;
   current: string;
-}> = ({ visible, current }) => {
+}> = ({ current }) => {
   const [displayCurrent, setDisplayCurrent] = useState(current);
 
   const fadeIn = useSpring({
     to: { opacity: 1, transform: 'translate(-50%, -50%)' },
     from: { opacity: 0, transform: 'translate(-50%, 0%)' },
-    reverse: !visible,
+    reverse: !current,
     onRest: () => {
-      if (!visible) {
+      if (!current) {
         setDisplayCurrent(current);
       }
     },
   });
 
   useEffect(() => {
-    if (visible) {
+    if (current) {
       setDisplayCurrent(current);
     }
-  }, [visible, current]);
+  }, [current]);
 
   return (
     <animated.div style={fadeIn} className={classes.menuLabel}>
-      <Image fit="contain" height={100} src={`/assets/images/${displayCurrent}.png`} />
+      {displayCurrent && (
+        <Image fit="contain" height={100} src={`/assets/images/${displayCurrent}.png`} />
+      )}
     </animated.div>
   );
 };

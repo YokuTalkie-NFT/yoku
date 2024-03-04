@@ -6,11 +6,13 @@ import { FC, useEffect } from 'react';
 interface AnimatedCharacterKukuProps {
   mousePosition: { x: number; y: number };
   size?: number;
+  active: boolean;
 }
 
 export const AnimatedCharacterKuku: FC<AnimatedCharacterKukuProps> = ({
   mousePosition,
   size = 230,
+  active,
 }) => {
   const moveLimit = 5;
 
@@ -179,28 +181,62 @@ export const AnimatedCharacterKuku: FC<AnimatedCharacterKukuProps> = ({
             d="M96.53,88.47c1.74,.84,2.97,1.24,4.9,1.04,.36-2.04,.38-3.39-.06-5.63,1.54-3.25,5.58-3.29,7.32-.14,1.03,1.86,.77,4.15,1.4,6.18s5.4,1.88,7.03,.52"
           />
         </g>
-        <g id="kukumouse1">
-          <path
-            style={{
-              fill: 'none',
-              stroke: '#000',
-              strokeLinecap: 'round',
-              strokeLinejoin: 'round',
-              strokeWidth: '3px',
-            }}
-            d="M107.13,96.25c.81-.25,1.76,.51,1.69,1.35-1.91,1.58-3.96,1.36-2.92-.89,2.16-.1,2.8-.37,2.55,1.78-.88,2.34-3.99,2.16-4.42-.3-.43-2.46,1.86-4.85,3.95-3.5,1.9,1.23,1.93,4.47,.06,5.74s-4.87,.05-5.32-2.17,1.85-4.51,4.07-4.05c.7,.73,.43,2.13-.49,2.56-.84-.53,.84,.53,0,0,1.2-.12-.08-1.36,.87-.61-.37,.87-.36,1.42-1.18,.95,2-.47,1.93,2.25,1.48,4.25-1.14,5.07-7.2,8.38-12.08,6.61"
-          />
-          <path
-            style={{
-              fill: 'none',
-              stroke: '#000',
-              strokeLinecap: 'round',
-              strokeLinejoin: 'round',
-              strokeWidth: '3px',
-            }}
-            d="M108.66,99.62c-1.75,4.11,1.19,9.48,5.6,10.21"
-          />
-        </g>
+        {active ? (
+          <g id="kukumouse2">
+            <ellipse
+              cx="105.31"
+              cy="93.79"
+              rx="2.82"
+              ry="3.72"
+              transform="translate(-1.27 186.14) rotate(-82.6)"
+            />
+            <g>
+              <path
+                style={{
+                  stroke: '#000',
+                  strokeLinecap: 'round',
+                  strokeLinejoin: 'round',
+                  fill: '#bb4347',
+                  strokeWidth: '3px',
+                }}
+                d="M89.98,101.77s6.92,1.7,10.4,.39c1.8-.68,3.64-2.78,4.95-7,0,0,11.89,11.23,14.72,3.63"
+              />
+              <path
+                style={{
+                  stroke: '#000',
+                  strokeLinecap: 'round',
+                  strokeLinejoin: 'round',
+                  fill: '#bb4347',
+                  strokeWidth: '3px',
+                }}
+                d="M96.32,103.44s3.31,15.72,11.51,15.04c8.88-.74,8.93-17.07,8.93-17.07,0,0-4.06-.53-5.31-1.07-1.59-.69-5.65-4.05-5.65-4.05,0,0-3.61,4.12-5.1,5.16-.99,.69-4.39,1.99-4.39,1.99Z"
+              />
+            </g>
+          </g>
+        ) : (
+          <g id="kukumouse1">
+            <path
+              style={{
+                fill: 'none',
+                stroke: '#000',
+                strokeLinecap: 'round',
+                strokeLinejoin: 'round',
+                strokeWidth: '3px',
+              }}
+              d="M107.13,96.25c.81-.25,1.76,.51,1.69,1.35-1.91,1.58-3.96,1.36-2.92-.89,2.16-.1,2.8-.37,2.55,1.78-.88,2.34-3.99,2.16-4.42-.3-.43-2.46,1.86-4.85,3.95-3.5,1.9,1.23,1.93,4.47,.06,5.74s-4.87,.05-5.32-2.17,1.85-4.51,4.07-4.05c.7,.73,.43,2.13-.49,2.56-.84-.53,.84,.53,0,0,1.2-.12-.08-1.36,.87-.61-.37,.87-.36,1.42-1.18,.95,2-.47,1.93,2.25,1.48,4.25-1.14,5.07-7.2,8.38-12.08,6.61"
+            />
+            <path
+              style={{
+                fill: 'none',
+                stroke: '#000',
+                strokeLinecap: 'round',
+                strokeLinejoin: 'round',
+                strokeWidth: '3px',
+              }}
+              d="M108.66,99.62c-1.75,4.11,1.19,9.48,5.6,10.21"
+            />
+          </g>
+        )}
       </g>
     </svg>
   );

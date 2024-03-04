@@ -20,7 +20,7 @@ export default function HomePage() {
 
   const [activeMenu, setActiveMenu] = useState('');
 
-  const handleMenuItemClick = (item: (typeof menuItems)[0]) => {
+  const handleMenuItemClick = (item: MenuItems) => {
     switch (item) {
       case 'wallet':
         open();
@@ -64,10 +64,10 @@ export default function HomePage() {
           index={0}
         />
       </div>
-      <MenuLabel visible={Boolean(activeMenu)} current={activeMenu} />
-      <div className={classes.iconsContainer}>
-        <AnimatedCharacterYoyo mousePosition={mousePosition} />
-        <AnimatedCharacterKuku mousePosition={mousePosition} />
+      <MenuLabel current={activeMenu} />
+      <div className={classes.characterContainer}>
+        <AnimatedCharacterYoyo active={Boolean(activeMenu)} mousePosition={mousePosition} />
+        <AnimatedCharacterKuku active={Boolean(activeMenu)} mousePosition={mousePosition} />
       </div>
     </div>
   );
