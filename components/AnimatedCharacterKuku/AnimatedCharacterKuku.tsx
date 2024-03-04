@@ -1,9 +1,17 @@
-import { useSpring, animated } from '@react-spring/web';
-import { useEffect } from 'react';
-import { throttle } from 'lodash';
-import { IconSvgProps } from '@/types';
+'use client';
 
-export const KukuIcon: React.FC<IconSvgProps> = ({ size = 300 }) => {
+import { animated, useSpring } from '@react-spring/web';
+import { FC, useEffect } from 'react';
+
+interface AnimatedCharacterKukuProps {
+  mousePosition: { x: number; y: number };
+  size?: number;
+}
+
+export const AnimatedCharacterKuku: FC<AnimatedCharacterKukuProps> = ({
+  mousePosition,
+  size = 230,
+}) => {
   const moveLimit = 5;
 
   const [{ cx1, cy1, cx2, cy2 }, set] = useSpring(() => ({
@@ -14,32 +22,22 @@ export const KukuIcon: React.FC<IconSvgProps> = ({ size = 300 }) => {
   }));
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
 
-      const diffX = e.clientX - centerX;
-      const diffY = e.clientY - centerY;
+    const diffX = mousePosition.x - centerX;
+    const diffY = mousePosition.y - centerY;
 
-      const moveX = (diffX / centerX) * moveLimit;
-      const moveY = (diffY / centerY) * moveLimit;
+    const moveX = (diffX / centerX) * moveLimit;
+    const moveY = (diffY / centerY) * moveLimit;
 
-      set({
-        cx1: 90.66 - moveY,
-        cy1: 64.48 + moveX,
-        cx2: 129.07 - moveY,
-        cy2: 64.71 + moveX,
-      });
-    };
-
-    const throttledHandleMouseMove = throttle(handleMouseMove, 100);
-
-    window.addEventListener('mousemove', throttledHandleMouseMove);
-
-    return () => {
-      window.removeEventListener('mousemove', throttledHandleMouseMove);
-    };
-  }, [set]);
+    set({
+      cx1: 90.66 - moveY,
+      cy1: 64.48 + moveX,
+      cx2: 129.07 - moveY,
+      cy2: 64.71 + moveX,
+    });
+  }, [mousePosition, set]);
 
   return (
     <svg width={size} height={size} viewBox="0 0 252.77 342.82">

@@ -34,65 +34,6 @@
   z-index: 100;
 }
 
-.menuItem {
-  width: rem(100px);
-  height: rem(100px);
-  border-radius: 50%;
-  background: radial-gradient(circle, white 30%, transparent 70%);
-  animation: pulse 2s infinite;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  cursor: pointer;
-}
-
-.menuItem:nth-child(2) {
-  align-self: flex-end;
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
-  }
-
-  70% {
-    box-shadow: 0 0 0 rem(10px) rgba(255, 255, 255, 0);
-  }
-
-  100% {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-  }
-}
-
-.planetImage {
-  position: absolute;
-  top: 2%;
-  left: 50%;
-  transform: translate(-58%, 42%);
-  height: auto;
-  width: rem(500px);
-  z-index: -1;
-}
-
-.starImage {
-  position: absolute;
-  top: 2%;
-  left: 50%;
-  transform: translate(0, 70%);
-  height: auto;
-  width: rem(200px);
-  z-index: 0;
-}
-
-.menuLabel {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 50%);
-  width: 100vw;
-}
-
 .iconsContainer {
   position: absolute;
   width: 100vw;

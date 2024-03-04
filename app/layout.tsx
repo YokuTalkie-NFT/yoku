@@ -8,7 +8,7 @@ import { config } from '@/util/constants';
 
 export const metadata = {
   title: 'YokuTalkie NFT',
-  description: 'Mint and meet - NFT is Your Key to Crypto Chats.',
+  description: 'Mint and meet',
 };
 
 export default function RootLayout({ children }: { children: any }) {

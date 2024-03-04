@@ -1,0 +1,9 @@
+.animatedPlanet {
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    transform: translate(-58%, 42%);
+    height: auto;
+    width: rem(500px);
+    z-index: -1;
+}
