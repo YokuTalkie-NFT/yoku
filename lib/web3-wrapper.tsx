@@ -1,22 +1,42 @@
-'use client';
-
 import React, { ReactNode } from 'react';
-import { createWeb3Modal } from '@web3modal/wagmi/react';
-
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { State, WagmiProvider } from 'wagmi';
-import { config, WALLET_CONNECT_PROJECT_ID } from '@/util/constants';
+import { sepolia, optimism } from 'wagmi/chains';
+import { createWeb3Modal } from '@web3modal/wagmi/react';
+import { defaultWagmiConfig } from '@web3modal/wagmi';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-// Setup queryClient
+const chains = [process.env.NODE_ENV === 'production' ? optimism : sepolia] as const;
+
+if (!process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID) {
+  throw new Error('Project ID is not defined');
+}
+
+if (!process.env.NEXT_PUBLIC_APP_URL) {
+  throw new Error('App URL is not defined');
+}
+
+const metadata = {
+  name: '',
+  description: 'Web3Modal Example',
+  url: process.env.NEXT_PUBLIC_APP_URL,
+  icons: [process.env.NEXT_PUBLIC_WAGMI_ICON_URL as string],
+};
+
+export const config = defaultWagmiConfig({
+  chains,
+  projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID as string,
+  metadata,
+  enableCoinbase: false,
+});
+
 const queryClient = new QueryClient();
 
 if (!config) throw new Error('Project ID is not defined');
 
-// Create modal
 createWeb3Modal({
   wagmiConfig: config,
-  projectId: WALLET_CONNECT_PROJECT_ID,
+  projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID as string,
   enableAnalytics: false,
 });
 

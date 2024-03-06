@@ -5,11 +5,11 @@ import { cookieToInitialState } from 'wagmi';
 import { headers } from 'next/headers';
 import { Amatic_SC } from 'next/font/google';
 import { Providers } from '@/app/providers';
-import { config } from '@/util/constants';
+import { config } from '@/lib/web3-wrapper';
 
 export const metadata = {
-  title: 'YokuTalkie NFT',
-  description: 'Mint and meet',
+  title: process.env.NEXT_PUBLIC_WAGMI_NAME,
+  description: process.env.NEXT_PUBLIC_WAGMI_DESCRIPTION,
 };
 
 const amaticSC = Amatic_SC({
