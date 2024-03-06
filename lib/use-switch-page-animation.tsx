@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSpring } from '@react-spring/web';
 
-function useSwitchAnimation() {
+function useSwitchPageAnimation() {
   const [isAnimating, setAnimating] = useState(false);
   const [initialLoad, setInitialLoad] = useState(true);
   const [_handler, setHandler] = useState<(() => void) | null>(null);
@@ -20,7 +20,7 @@ function useSwitchAnimation() {
     },
   });
 
-  const start = (handler: () => void) => {
+  const switchTo = (handler: () => void) => {
     setAnimating(true);
     setHandler(() => handler);
     setTimeout(() => setAnimating(false), 1000);
@@ -33,9 +33,9 @@ function useSwitchAnimation() {
   }, [initialLoad]);
 
   return {
-    start,
+    switchTo,
     animatedProps,
   };
 }
 
-export default useSwitchAnimation;
+export default useSwitchPageAnimation;

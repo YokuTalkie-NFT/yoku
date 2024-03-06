@@ -15,14 +15,14 @@ import { AnimatedPlanet } from '@/components/AnimatedPlanet/AnimatedPlanet';
 import { AnimatedCharacterKuku } from '@/components/AnimatedCharacterKuku/AnimatedCharacterKuku';
 import { AnimatedCharacterYoyo } from '@/components/AnimatedCharacterYoyo/AnimatedCharacterYoyo';
 import { MenuLabel } from '@/components/MenuLabel/MenuLabel';
-import useSwitchAnimation from '@/lib/use-switch-animation';
+import useSwitchPageAnimation from '@/lib/use-switch-page-animation';
 
 export default function HomePage() {
   const { push } = useRouter();
   const { open } = useWeb3Modal();
   const mousePosition = useMousePosition();
   const [activeMenu, setActiveMenu] = useState('');
-  const { animatedProps, start } = useSwitchAnimation();
+  const { animatedProps, switchTo } = useSwitchPageAnimation();
 
   const handleMenuItemClick = (item: MenuItems) => {
     switch (item) {
@@ -30,7 +30,7 @@ export default function HomePage() {
         open();
         break;
       case 'mint':
-        start(() => push('mint'));
+        switchTo(() => push('mint'));
     }
   };
 

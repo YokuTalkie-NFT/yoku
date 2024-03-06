@@ -28,7 +28,7 @@ export const MenuLabel: FC<{
   return (
     <animated.div style={fadeIn} className={classes.menuLabel}>
       {displayCurrent && (
-        <Image fit="contain" height={100} src={`/assets/images/${displayCurrent}.png`} />
+        <Image fit="contain" height={100} src={`/assets/images/home/${displayCurrent}.png`} />
       )}
     </animated.div>
   );

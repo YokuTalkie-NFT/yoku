@@ -18,7 +18,7 @@ export const AnimatedStar: FC<AnimatedStarProps> = ({ mousePosition }) => {
 
   return (
     <animated.div style={starMove}>
-      <Image className={classes.animatedStar} src="/assets/images/star.png" />
+      <Image className={classes.animatedStar} src="/assets/images/home/star.png" />
     </animated.div>
   );
 };

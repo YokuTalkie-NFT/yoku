@@ -4,6 +4,7 @@ import { ColorSchemeScript } from '@mantine/core';
 import { cookieToInitialState } from 'wagmi';
 import { headers } from 'next/headers';
 import { Amatic_SC } from 'next/font/google';
+import { Toaster } from 'react-hot-toast';
 import { Providers } from '@/app/providers';
 import { config } from '@/lib/web3-wrapper';
 
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: { children: any }) {
       </head>
       <body>
         <Providers initialState={initialState}>{children}</Providers>
+        <Toaster />
       </body>
     </html>
   );

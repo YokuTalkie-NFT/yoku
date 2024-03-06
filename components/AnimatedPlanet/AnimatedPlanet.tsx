@@ -17,7 +17,7 @@ export const AnimatedPlanet: FC<AnimatedStarProps> = ({ mousePosition }) => {
   });
   return (
     <animated.div style={planetMove}>
-      <Image className={classes.animatedPlanet} src="/assets/images/planet.png" />
+      <Image className={classes.animatedPlanet} src="/assets/images/home/planet.png" />
     </animated.div>
   );
 };

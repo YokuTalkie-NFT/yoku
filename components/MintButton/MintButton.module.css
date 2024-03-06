@@ -1,0 +1,26 @@
+.mintButton {
+    width: rem(220px);
+    height: rem(70px);
+    padding: rem(10px) rem(20px);
+    border-radius: rem(70px);
+    background-color: #1C1E47;
+    color: white;
+    font-size: rem(30px);
+    font-weight: 700;
+    position: absolute;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px 2px;
+    cursor: pointer;
+    bottom: rem(70px);
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.mintButton:hover {
+    background-color: #2E2F6D;
+    color: white;
+    text-decoration: none;
+}

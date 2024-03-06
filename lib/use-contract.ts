@@ -1,26 +1,47 @@
-import { useAccount, useWriteContract } from 'wagmi';
-import { useCallback } from 'react';
+import { useAccount, useReadContract, useWriteContract } from 'wagmi';
+import { useCallback, useEffect } from 'react';
 import YokuTalkieABI from '../contracts/YokuTalkie.json';
 
-export const useYokuTalkieContract = () => {
+interface YokuTalkieContractEvents {
+  onStart?: () => void;
+  onError?: (error: Error) => void;
+  onSuccess?: () => void;
+}
+
+export const useYokuTalkieContract = ({
+  onError,
+  onSuccess,
+  onStart,
+}: YokuTalkieContractEvents) => {
   const { address } = useAccount();
   const { writeContract, isSuccess, isError, isPending } = useWriteContract();
 
+  const result = useReadContract({
+    address: process.env.NEXT_PUBLIC_APP_CONTRACT_ADDRESS as `0x${string}`,
+    abi: YokuTalkieABI.abi,
+    functionName: 'mint',
+    args: [],
+  });
+
+  useEffect(() => {
+    if (isSuccess) {
+      onSuccess?.();
+    }
+    if (isError) {
+      onError?.(new Error('Failed to mint NFT'));
+    }
+  }, [isSuccess, isError]);
+
   const mint = useCallback(() => {
+    onStart?.();
     writeContract({
-      address: process.env.NEXT_APP_CONTRACT_ADDRESS as `0x${string}`,
+      address: process.env.NEXT_PUBLIC_APP_CONTRACT_ADDRESS as `0x${string}`,
       abi: YokuTalkieABI.abi,
       functionName: 'mintNFT',
       args: [address],
       value: BigInt('5000000000000000'),
     });
-
-    return {
-      done: isSuccess,
-      pending: isPending,
-      error: isError,
-    };
   }, [address]);
 
-  return { mint };
+  return { mint, done: isSuccess, pending: isPending, error: isError };
 };
