@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { animated, useTransition } from '@react-spring/web';
 import toast from 'react-hot-toast';
 import { useAccount } from 'wagmi';
@@ -16,10 +16,12 @@ import { MintButton } from '@/components/MintButton/MintButton';
 import { useYokuTalkieContract } from '@/lib/use-contract';
 import { useNFTs } from '@/lib/use-NFTs';
 import { AnimatedMintedNFT } from '@/components/AnimatedMintedNFT/AnimatedMintedNFT';
+import { MintedNFTHoverLabel } from '@/components/MintedNFTHoverLabel/MintedNFTHoverLabel';
 
 export default function MintPage() {
   const mousePosition = useMousePosition();
   const { animatedProps } = useSwitchPageAnimation();
+  const [isNFTHovered, setIsNFTHovered] = useState(false);
 
   const { address } = useAccount();
   const { NFTs, loading, refreshNFTs } = useNFTs(address!);
@@ -54,11 +56,16 @@ export default function MintPage() {
             </animated.div>
           ) : (
             <animated.div style={style}>
-              <AnimatedMintedNFT NFT={NFTs[NFTs.length - 1]} />
+              <AnimatedMintedNFT
+                onMouseLeave={() => setIsNFTHovered(false)}
+                onMouseOver={() => setIsNFTHovered(true)}
+                NFT={NFTs[NFTs.length - 1]}
+              />
             </animated.div>
           )
         )}
       </div>
+      <MintedNFTHoverLabel isHovered={isNFTHovered} />
     </animated.div>
   );
 }

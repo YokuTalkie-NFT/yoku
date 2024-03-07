@@ -7,7 +7,6 @@
     transform: translate(-44.5%, 30%);
     z-index: 1;
     background: url("/assets/images/mint/nft-mask.png") no-repeat center center;
-    cursor: pointer;
 }
 
 .animatedMintedNFT {
@@ -18,6 +17,7 @@
     top: rem(150px);
     transform: translateX(-50%);
     z-index: 10;
+    cursor: pointer;
 }
 
 .nftLabel {

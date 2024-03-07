@@ -4,7 +4,3 @@
     -ms-user-select: none;
     user-select: none;
 }
-
-img {
-    pointer-events: none;
-}

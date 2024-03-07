@@ -7,9 +7,15 @@ import { Nft } from '@/graphql/generated/client-types/graphql';
 
 interface AnimatedMintedNFTProps {
   NFT: Nft;
+  onMouseOver: () => void;
+  onMouseLeave: () => void;
 }
 
-export const AnimatedMintedNFT: FC<AnimatedMintedNFTProps> = ({ NFT }) => {
+export const AnimatedMintedNFT: FC<AnimatedMintedNFTProps> = ({
+  NFT,
+  onMouseOver,
+  onMouseLeave,
+}) => {
   const isMobile = useMediaQuery('(max-width: 768px)');
 
   const boxAnimation = useSpring({
@@ -30,6 +36,8 @@ export const AnimatedMintedNFT: FC<AnimatedMintedNFTProps> = ({ NFT }) => {
     <animated.div style={boxAnimation}>
       <div className={classes.animatedMintedNFTContainer} />
       <Image
+        onMouseOver={onMouseOver}
+        onMouseLeave={onMouseLeave}
         className={classes.animatedMintedNFT}
         src={NFT.imageUrl.replace('ipfs.io', 'cloudflare-ipfs.com')}
       />
