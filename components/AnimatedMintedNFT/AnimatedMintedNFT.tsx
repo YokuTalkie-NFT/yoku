@@ -2,6 +2,7 @@ import { animated, useSpring } from '@react-spring/web';
 import { Image } from '@mantine/core';
 import React, { FC } from 'react';
 import { useMediaQuery } from '@mantine/hooks';
+import toast from 'react-hot-toast';
 import classes from './AnimatedMintedNFT.module.css';
 import { Nft } from '@/graphql/generated/client-types/graphql';
 
@@ -36,8 +37,10 @@ export const AnimatedMintedNFT: FC<AnimatedMintedNFTProps> = ({
     <animated.div style={boxAnimation}>
       <div className={classes.animatedMintedNFTContainer} />
       <Image
-        onMouseOver={onMouseOver}
-        onMouseLeave={onMouseLeave}
+        // todo remove this
+        onClick={() => toast('Coming soon!')}
+        onMouseOver={() => !isMobile && onMouseOver()}
+        onMouseLeave={() => !isMobile && onMouseLeave()}
         className={classes.animatedMintedNFT}
         src={NFT.imageUrl.replace('ipfs.io', 'cloudflare-ipfs.com')}
       />

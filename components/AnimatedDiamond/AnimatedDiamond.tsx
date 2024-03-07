@@ -32,8 +32,8 @@ export const AnimatedDiamond: FC<AnimatedMintedNFTProps> = ({ onMouseOver, onMou
     <animated.div style={diamondAnimation}>
       <Image
         fit="contain"
-        onMouseOver={onMouseOver}
-        onMouseLeave={onMouseLeave}
+        onMouseOver={() => !isMobile && onMouseOver()}
+        onMouseLeave={() => !isMobile && onMouseLeave()}
         className={classes.animatedDiamond}
         src="/assets/images/diamond.png"
       />
