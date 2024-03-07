@@ -1,8 +1,7 @@
-'use client';
-
 import { animated, useSpring } from '@react-spring/web';
 import { Image } from '@mantine/core';
-import { FC } from 'react';
+import React, { FC } from 'react';
+import { useMediaQuery } from '@mantine/hooks';
 import classes from './AnimatedMintedNFT.module.css';
 import { Nft } from '@/graphql/generated/client-types/graphql';
 
@@ -11,6 +10,8 @@ interface AnimatedMintedNFTProps {
 }
 
 export const AnimatedMintedNFT: FC<AnimatedMintedNFTProps> = ({ NFT }) => {
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
   const boxAnimation = useSpring({
     from: { transform: 'translateY(0px)' },
     to: async (next) => {
@@ -27,11 +28,23 @@ export const AnimatedMintedNFT: FC<AnimatedMintedNFTProps> = ({ NFT }) => {
 
   return (
     <animated.div style={boxAnimation}>
-      <div className={classes.animatedMintedNFTContainer}>
-        <Image
-          className={classes.animatedMintedNFT}
-          src={NFT.imageUrl.replace('ipfs.io', 'cloudflare-ipfs.com')}
-        />
+      <div className={classes.animatedMintedNFTContainer} />
+      <Image
+        className={classes.animatedMintedNFT}
+        src={NFT.imageUrl.replace('ipfs.io', 'cloudflare-ipfs.com')}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          bottom: 0,
+          right: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+        }}
+      >
+        {isMobile && <div className={classes.nftLabel}>Click to view NFT</div>}
       </div>
     </animated.div>
   );
