@@ -10,3 +10,14 @@
     height: 100vh;
     overflow: hidden;
 }
+
+.animatedMintContainer {
+    position: absolute;
+    top: rem(60px);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}

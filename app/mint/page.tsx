@@ -50,7 +50,7 @@ export default function MintPage() {
         <AnimatedBubbles mousePosition={mousePosition} />
         {transitions((style, item) =>
           item ? (
-            <animated.div style={style}>
+            <animated.div className={classes.animatedMintContainer} style={style}>
               <AnimatedBox loading={loading || pending} />
               <MintButton disabled={pending || loading} onMint={() => mint()} />
             </animated.div>
