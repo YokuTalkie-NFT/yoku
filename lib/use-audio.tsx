@@ -58,7 +58,9 @@ export const AudioProvider: FC<AudioProviderProps> = ({ children }) => {
 
   const setUrl = (url: string) => {
     if (!audio) {
-      setAudio(new Audio(url));
+      const _ = new Audio(url);
+      _.loop = true;
+      setAudio(_);
     }
   };
 
