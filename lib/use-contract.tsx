@@ -5,7 +5,7 @@ import YokuTalkieABI from '../contracts/YokuTalkie.json';
 interface YokuTalkieContractEvents {
   onStart?: () => void;
   onError?: (error: Error) => void;
-  onSuccess?: () => void;
+  onSuccess?: (identifier: string) => void;
 }
 
 export const useYokuTalkieContract = ({
@@ -14,9 +14,9 @@ export const useYokuTalkieContract = ({
   onStart,
 }: YokuTalkieContractEvents) => {
   const { address } = useAccount();
-  const { writeContract, isSuccess, isError, isPending } = useWriteContract();
+  const { writeContract, isSuccess, isError, isPending, data } = useWriteContract();
 
-  const result = useReadContract({
+  useReadContract({
     address: process.env.NEXT_PUBLIC_APP_CONTRACT_ADDRESS as `0x${string}`,
     abi: YokuTalkieABI.abi,
     functionName: 'mint',
@@ -25,7 +25,8 @@ export const useYokuTalkieContract = ({
 
   useEffect(() => {
     if (isSuccess) {
-      onSuccess?.();
+      console.log(data);
+      onSuccess?.('');
     }
     if (isError) {
       onError?.(new Error('Failed to mint NFT'));

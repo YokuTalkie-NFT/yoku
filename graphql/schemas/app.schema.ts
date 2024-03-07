@@ -2,8 +2,9 @@ import gql from 'graphql-tag';
 
 export const appSchema = gql`
   type Query {
-    nft(id: ID!): NFT
-    nfts(ownerAddress: ID!): [NFT!]!
+    #    nft(id: ID!): NFT
+    NFTs(ownerAddress: ID!): [NFT!]!
+    pollingNFTsAfterCreation(ownerAddress: ID!, previousCount: Int!): [NFT!]!
   }
 
   type NFT {

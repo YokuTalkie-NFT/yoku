@@ -7,9 +7,10 @@ import { KeyCode } from '@/util/code.enum';
 
 interface MintButtonProps {
   onMint: () => void;
+  disabled?: boolean;
 }
 
-export const MintButton: React.FC<MintButtonProps> = ({ onMint }) => {
+export const MintButton: React.FC<MintButtonProps> = ({ onMint, disabled = false }) => {
   const { isConnected } = useAccount();
   const { open } = useWeb3Modal();
 
@@ -30,11 +31,11 @@ export const MintButton: React.FC<MintButtonProps> = ({ onMint }) => {
   return (
     <button
       type="submit"
-      className={classes.mintButton}
+      className={disabled ? classes.mintButtonDisabled : classes.mintButton}
       onClick={handleMint}
       onKeyDown={handleEnterPress}
     >
-      {isConnected ? 'Mint NFT' : 'Connect Wallet'}
+      Mint NFT
     </button>
   );
 };

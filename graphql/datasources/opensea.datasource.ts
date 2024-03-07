@@ -47,8 +47,9 @@ export class OpenseaDatasource extends RetryDatasource {
       .then(camelCaseKeys);
   }
 
-  async pollForNFT(
-    identifier: string,
+  async pollForNFTs(
+    ownerAddress: string,
+    previousCount: number,
     maxAttempts: number = 10,
     delayBetweenAttempts: number = 2000
   ) {
@@ -56,10 +57,12 @@ export class OpenseaDatasource extends RetryDatasource {
     while (attempt < maxAttempts) {
       try {
         // eslint-disable-next-line no-await-in-loop
-        const result = await this.getNFTByIdentifier(identifier);
-        if (result) {
+        const result = await this.getNFTsByOwner(ownerAddress);
+
+        if (result.nfts.length > previousCount) {
           return result;
         }
+        console.log(`Attempt ${attempt + 1} failed:`, JSON.stringify(result));
       } catch (error) {
         console.error(`Attempt ${attempt + 1} failed:`, JSON.stringify(error));
       }
