@@ -1,4 +1,5 @@
 import '@mantine/core/styles.css';
+import './app.css';
 import React from 'react';
 import { ColorSchemeScript } from '@mantine/core';
 import { cookieToInitialState } from 'wagmi';

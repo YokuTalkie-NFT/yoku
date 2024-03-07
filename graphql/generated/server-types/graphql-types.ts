@@ -22,9 +22,10 @@ export type Nft = {
   creator: Scalars['String']['output'];
   description: Scalars['String']['output'];
   identifier: Scalars['String']['output'];
-  imageUrl?: Maybe<Scalars['String']['output']>;
-  metadataUrl?: Maybe<Scalars['String']['output']>;
+  imageUrl: Scalars['String']['output'];
+  metadataUrl: Scalars['String']['output'];
   name: Scalars['String']['output'];
+  openseaUrl: Scalars['String']['output'];
   owners: Array<Owner>;
   tokenStandard: Scalars['String']['output'];
   traits: Array<Trait>;
@@ -160,9 +161,10 @@ export type NftResolvers<ContextType = any, ParentType extends ResolversParentTy
   creator?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   identifier?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  imageUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  metadataUrl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  imageUrl?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  metadataUrl?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  openseaUrl?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   owners?: Resolver<Array<ResolversTypes['Owner']>, ParentType, ContextType>;
   tokenStandard?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   traits?: Resolver<Array<ResolversTypes['Trait']>, ParentType, ContextType>;

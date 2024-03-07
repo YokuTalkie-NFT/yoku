@@ -5,11 +5,11 @@ import { Image } from '@mantine/core';
 import { FC } from 'react';
 import classes from './AnimatedBox.module.css';
 
-interface AnimatedStarProps {
+interface AnimatedBoxProps {
   loading: boolean;
 }
 
-export const AnimatedBox: FC<AnimatedStarProps> = ({ loading = false }) => {
+export const AnimatedBox: FC<AnimatedBoxProps> = ({ loading = false }) => {
   const boxAnimation = useSpring({
     from: { transform: loading ? 'translateX(0px)' : 'translateY(0px)' },
     to: async (next) => {

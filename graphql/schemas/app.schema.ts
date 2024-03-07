@@ -13,8 +13,9 @@ export const appSchema = gql`
     description: String!
     contract: String!
     tokenStandard: String!
-    imageUrl: String
-    metadataUrl: String
+    imageUrl: String!
+    openseaUrl: String!
+    metadataUrl: String!
     updatedAt: String!
     creator: String!
     traits: [Trait!]!

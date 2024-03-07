@@ -5,11 +5,11 @@ import { Image } from '@mantine/core';
 import { FC } from 'react';
 import classes from './AnimatedBubbles.module.css';
 
-interface AnimatedStarProps {
+interface AnimatedBubblesProps {
   mousePosition: { x: number; y: number };
 }
 
-export const AnimatedBubbles: FC<AnimatedStarProps> = ({ mousePosition }) => {
+export const AnimatedBubbles: FC<AnimatedBubblesProps> = ({ mousePosition }) => {
   const move = useSpring({
     to: {
       transform: `translate(${mousePosition.x / 100}px, -${mousePosition.y / 80}px)`,

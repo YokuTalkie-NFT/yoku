@@ -5,11 +5,11 @@ import { Image } from '@mantine/core';
 import { FC } from 'react';
 import classes from './AnimatedMountain.module.css';
 
-interface AnimatedStarProps {
+interface AnimatedMountainProps {
   mousePosition: { x: number; y: number };
 }
 
-export const AnimatedMountain: FC<AnimatedStarProps> = ({ mousePosition }) => {
+export const AnimatedMountain: FC<AnimatedMountainProps> = ({ mousePosition }) => {
   const move = useSpring({
     to: {
       transform: `translateY(-${mousePosition.y / 50}px)`,

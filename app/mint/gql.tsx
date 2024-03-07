@@ -9,6 +9,7 @@ export const QUERY_NFTS_BY_OWNER = gql`
       contract
       tokenStandard
       imageUrl
+      openseaUrl
       metadataUrl
       updatedAt
       creator
@@ -33,6 +34,7 @@ export const POLLING_NFTS_BY_OWNER_AFTER_CREATION = gql`
       contract
       tokenStandard
       imageUrl
+      openseaUrl
       metadataUrl
       updatedAt
       creator

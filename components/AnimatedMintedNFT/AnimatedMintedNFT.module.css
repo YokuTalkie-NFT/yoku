@@ -1,0 +1,19 @@
+.animatedMintedNFTContainer {
+    position: absolute;
+    width: rem(345px);
+    height: rem(461px);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 30%);
+    z-index: 1;
+    background: url("/assets/images/mint/nft-mask.png") no-repeat center center;
+}
+
+.animatedMintedNFT {
+    width: rem(280px);
+    height: rem(280px);
+    position: absolute;
+    left: 50%;
+    top: rem(15px);
+    transform: translateX(-56.6%);
+}
