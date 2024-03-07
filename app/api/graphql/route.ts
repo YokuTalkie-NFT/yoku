@@ -9,11 +9,11 @@ const handler = startServerAndCreateNextHandler<NextRequest, AppContext>(server,
     dataSources: {
       openseaDatasource: new OpenseaDatasource(
         process.env.NODE_ENV === 'production'
-          ? 'https://api.opensea.io/api/v2/'
+          ? 'https://testnets-api.opensea.io/api/v2/'
           : 'https://testnets-api.opensea.io/api/v2/',
         process.env.OPENSEA_API_KEY as string,
         process.env.NEXT_PUBLIC_APP_CONTRACT_ADDRESS as string,
-        process.env.NODE_ENV === 'production' ? 'optimism' : 'sepolia'
+        process.env.NODE_ENV === 'production' ? 'sepolia' : 'sepolia'
       ),
     },
   }),

@@ -6,7 +6,7 @@ import { createWeb3Modal } from '@web3modal/wagmi/react';
 import { defaultWagmiConfig } from '@web3modal/wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-const chains = [process.env.NODE_ENV === 'production' ? optimism : sepolia] as const;
+const chains = [process.env.NODE_ENV === 'production' ? sepolia : sepolia] as const;
 
 if (!process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID) {
   throw new Error('Project ID is not defined');
