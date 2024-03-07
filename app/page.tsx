@@ -1,82 +1,56 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useWeb3Modal } from '@web3modal/wagmi/react';
 import { useRouter } from 'next/navigation';
 import { animated } from '@react-spring/web';
-import { AppHeader } from '@/components/AppHeader/AppHeader';
-import MenuItem, { MenuItems } from '@/components/MenuItem/MenuItem';
-
-import classes from './page.module.css';
+import { useAudioPlayer } from '@/lib/use-audio';
 import useMousePosition from '@/lib/use-mouse-position';
-import { KeyCode } from '@/util/code.enum';
-import { AnimatedStar } from '@/components/AnimatedStar/AnimatedStar';
-import { AnimatedPlanet } from '@/components/AnimatedPlanet/AnimatedPlanet';
-import { AnimatedCharacterKuku } from '@/components/AnimatedCharacterKuku/AnimatedCharacterKuku';
-import { AnimatedCharacterYoyo } from '@/components/AnimatedCharacterYoyo/AnimatedCharacterYoyo';
-import { MenuLabel } from '@/components/MenuLabel/MenuLabel';
 import useSwitchPageAnimation from '@/lib/use-switch-page-animation';
+import classes from './page.module.css';
+import { AnimatedDiamond } from '@/components/AnimatedDiamond/AnimatedDiamond';
+import { DiamondHoverLabel } from '@/components/DiamondHoverLabel/DiamondHoverLabel';
+import { KeyCode } from '@/util/code.enum';
 
-export default function HomePage() {
-  const { push } = useRouter();
-  const { open } = useWeb3Modal();
-  const mousePosition = useMousePosition();
-  const [activeMenu, setActiveMenu] = useState('');
+export default function EntryPage() {
+  const { replace } = useRouter();
   const { animatedProps, switchTo } = useSwitchPageAnimation();
 
-  const handleMenuItemClick = (item: MenuItems) => {
-    switch (item) {
-      case 'wallet':
-        open();
-        break;
-      case 'mint':
-        switchTo(() => push('mint'));
+  const { toggle, playing, setUrl } = useAudioPlayer();
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleClick = () => {
+    setUrl('/assets/audios/background.mp3');
+
+    if (!playing) {
+      toggle();
+    }
+
+    switchTo(() => {
+      replace('/home');
+    });
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === KeyCode.Enter) {
+      handleClick();
     }
   };
 
-  const handleMouseHovering = (item: MenuItems) => setActiveMenu(item);
-
-  const handleMouseLeaving = () => setActiveMenu('');
-
   return (
     <animated.div style={animatedProps}>
-      <div className={classes.container}>
-        <AppHeader />
-        <AnimatedPlanet mousePosition={mousePosition} />
-        <AnimatedStar mousePosition={mousePosition} />
-        <div className={classes.menuContainerTop}>
-          <MenuItem
-            item="wallet"
-            onClick={handleMenuItemClick}
-            onMouseHovering={handleMouseHovering}
-            onMouseLeaving={handleMouseLeaving}
-            keyCode={KeyCode.KeyA}
-            index={0}
-          />
-          <MenuItem
-            item="mint"
-            onClick={handleMenuItemClick}
-            onMouseHovering={handleMouseHovering}
-            onMouseLeaving={handleMouseLeaving}
-            keyCode={KeyCode.KeyS}
-            index={0}
-          />
-        </div>
-        <div className={classes.menuContainerBottom}>
-          <MenuItem
-            item="gallery"
-            onClick={handleMenuItemClick}
-            onMouseHovering={handleMouseHovering}
-            onMouseLeaving={handleMouseLeaving}
-            keyCode={KeyCode.KeyD}
-            index={0}
-          />
-        </div>
-        <MenuLabel current={activeMenu} />
-        <div className={classes.characterContainer}>
-          <AnimatedCharacterYoyo active={Boolean(activeMenu)} mousePosition={mousePosition} />
-          <AnimatedCharacterKuku active={Boolean(activeMenu)} mousePosition={mousePosition} />
-        </div>
+      <div
+        tabIndex={0}
+        role="button"
+        aria-label="Go to home page"
+        onKeyDown={handleKeyDown}
+        onClick={handleClick}
+        className={classes.entryContainer}
+      >
+        <AnimatedDiamond
+          onMouseOver={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        />
+        <DiamondHoverLabel isHovered={isHovered} />
       </div>
     </animated.div>
   );

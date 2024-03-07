@@ -6,6 +6,7 @@ import { State } from 'wagmi';
 import { ApolloWrapper } from '@/lib/apollo-wrapper';
 import { theme } from '@/theme';
 import { Web3Wrapper } from '@/lib/web3-wrapper';
+import { AudioProvider } from '@/lib/use-audio';
 
 export const Providers: React.FC<
   React.PropsWithChildren<{
@@ -14,7 +15,9 @@ export const Providers: React.FC<
 > = ({ children, initialState }) => (
   <ApolloWrapper>
     <Web3Wrapper initialState={initialState}>
-      <MantineProvider theme={theme}>{children}</MantineProvider>
+      <MantineProvider theme={theme}>
+        <AudioProvider>{children}</AudioProvider>
+      </MantineProvider>
     </Web3Wrapper>
   </ApolloWrapper>
 );

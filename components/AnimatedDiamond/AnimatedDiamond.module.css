@@ -1,0 +1,25 @@
+.animatedDiamond {
+    width: rem(200px);
+    height: auto;
+}
+
+.diamondLabel {
+    font-weight: 700;
+    background-color: white;
+    color: black;
+    padding: rem(8px) rem(32px);
+    border-radius: rem(16px);
+    box-shadow: 0 rem(2px) rem(4px) rgba(0,0,0,0.1);
+    font-size: rem(30px);
+    text-align: center;
+    width: max-content;
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: rem(-70px);
+    cursor: pointer;
+}
