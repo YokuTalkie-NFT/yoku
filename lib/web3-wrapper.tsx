@@ -1,12 +1,10 @@
 import React, { ReactNode } from 'react';
 
 import { State, WagmiProvider } from 'wagmi';
-import { sepolia, optimism } from 'wagmi/chains';
+import * as chains from 'wagmi/chains';
 import { createWeb3Modal } from '@web3modal/wagmi/react';
 import { defaultWagmiConfig } from '@web3modal/wagmi';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
-const chains = [process.env.NODE_ENV === 'production' ? sepolia : sepolia] as const;
 
 if (!process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID) {
   throw new Error('Project ID is not defined');
@@ -24,7 +22,8 @@ const metadata = {
 };
 
 export const config = defaultWagmiConfig({
-  chains,
+  ssr: true,
+  chains: [(chains as any)[process.env.NEXT_PUBLIC_APP_DEFAULT_CHAIN as any]],
   projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID as string,
   metadata,
   enableCoinbase: false,
@@ -37,7 +36,8 @@ if (!config) throw new Error('Project ID is not defined');
 createWeb3Modal({
   wagmiConfig: config,
   projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID as string,
-  enableAnalytics: false,
+  enableAnalytics: true,
+  defaultChain: (chains as any)[process.env.NEXT_PUBLIC_APP_DEFAULT_CHAIN as string],
 });
 
 export function Web3Wrapper({

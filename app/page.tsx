@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { animated } from '@react-spring/web';
 import { useAudioPlayer } from '@/lib/use-audio';
-import useMousePosition from '@/lib/use-mouse-position';
 import useSwitchPageAnimation from '@/lib/use-switch-page-animation';
 import classes from './page.module.css';
 import { AnimatedDiamond } from '@/components/AnimatedDiamond/AnimatedDiamond';

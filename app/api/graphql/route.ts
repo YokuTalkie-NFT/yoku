@@ -8,12 +8,10 @@ const handler = startServerAndCreateNextHandler<NextRequest, AppContext>(server,
     req,
     dataSources: {
       openseaDatasource: new OpenseaDatasource(
-        process.env.NODE_ENV === 'production'
-          ? 'https://testnets-api.opensea.io/api/v2/'
-          : 'https://testnets-api.opensea.io/api/v2/',
+        process.env.OPENSEA_API_URL as string,
         process.env.OPENSEA_API_KEY as string,
-        process.env.NEXT_PUBLIC_APP_CONTRACT_ADDRESS as string,
-        process.env.NODE_ENV === 'production' ? 'sepolia' : 'sepolia'
+        process.env.NEXT_PUBLIC_YOKUTALKIE_CONTRACT_ADDRESS as string,
+        process.env.NEXT_PUBLIC_APP_DEFAULT_CHAIN as string
       ),
     },
   }),
