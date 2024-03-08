@@ -24,8 +24,8 @@
 }
 
 .menuContainerBottom {
-  width: 80vw;
-  height: 35vh;
+  width: 70vw;
+  height: 20vh;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
