@@ -10,8 +10,8 @@ import { Providers } from '@/app/providers';
 import { config } from '@/lib/web3-wrapper';
 
 export const metadata = {
-  title: process.env.NEXT_PUBLIC_WAGMI_NAME,
-  description: process.env.NEXT_PUBLIC_WAGMI_DESCRIPTION,
+  title: process.env.NEXT_PUBLIC_APP_NAME,
+  description: process.env.NEXT_PUBLIC_APP_DESCRIPTION,
 };
 
 const amaticSC = Amatic_SC({

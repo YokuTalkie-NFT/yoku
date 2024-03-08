@@ -17,7 +17,7 @@ export const useYokuTalkieContract = ({
   const { writeContract, isSuccess, isError, isPending, data } = useWriteContract();
 
   useReadContract({
-    address: process.env.NEXT_PUBLIC_APP_CONTRACT_ADDRESS as `0x${string}`,
+    address: process.env.NEXT_PUBLIC_YOKUTALKIE_CONTRACT_ADDRESS as `0x${string}`,
     abi: YokuTalkieABI.abi,
     functionName: 'mint',
     args: [],
@@ -36,7 +36,7 @@ export const useYokuTalkieContract = ({
   const mint = useCallback(() => {
     onStart?.();
     writeContract({
-      address: process.env.NEXT_PUBLIC_APP_CONTRACT_ADDRESS as `0x${string}`,
+      address: process.env.NEXT_PUBLIC_YOKUTALKIE_CONTRACT_ADDRESS as `0x${string}`,
       abi: YokuTalkieABI.abi,
       functionName: 'mintNFT',
       args: [address],

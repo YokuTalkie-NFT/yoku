@@ -15,10 +15,10 @@ if (!process.env.NEXT_PUBLIC_APP_URL) {
 }
 
 const metadata = {
-  name: '',
-  description: 'Web3Modal Example',
+  name: process.env.NEXT_PUBLIC_APP_NAME as string,
+  description: process.env.NEXT_PUBLIC_APP_DESCRIPTION as string,
   url: process.env.NEXT_PUBLIC_APP_URL,
-  icons: [process.env.NEXT_PUBLIC_WAGMI_ICON_URL as string],
+  icons: [process.env.NEXT_PUBLIC_APP_ICON_URL as string],
 };
 
 export const config = defaultWagmiConfig({
