@@ -6969,7 +6969,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@web3modal/wagmi@npm:^4.0.11":
+"@web3modal/wagmi@npm:^4.0.13":
   version: 4.0.13
   resolution: "@web3modal/wagmi@npm:4.0.13"
   dependencies:
@@ -13851,7 +13851,7 @@ __metadata:
     "@types/react": "npm:18.2.34"
     "@typescript-eslint/eslint-plugin": "npm:^6.9.1"
     "@typescript-eslint/parser": "npm:^6.9.1"
-    "@web3modal/wagmi": "npm:^4.0.11"
+    "@web3modal/wagmi": "npm:^4.0.13"
     babel-loader: "npm:^9.1.3"
     eslint: "npm:^8.53.0"
     eslint-config-airbnb: "npm:19.0.4"
