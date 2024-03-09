@@ -9,6 +9,8 @@ import classes from './page.module.css';
 import { AnimatedDiamond } from '@/components/AnimatedDiamond/AnimatedDiamond';
 import { DiamondHoverLabel } from '@/components/DiamondHoverLabel/DiamondHoverLabel';
 import { KeyCode } from '@/util/code.enum';
+import useImagePreload from '@/lib/use-image-preload';
+import { preloadImages } from '@/util/preload-images';
 
 export default function EntryPage() {
   const { replace } = useRouter();
@@ -16,6 +18,8 @@ export default function EntryPage() {
 
   const { toggle, playing, setUrl } = useAudioPlayer();
   const [isHovered, setIsHovered] = useState(false);
+
+  const { preloaded, progress } = useImagePreload(preloadImages);
 
   const handleClick = () => {
     setUrl('/assets/audios/background.mp3');
@@ -46,10 +50,12 @@ export default function EntryPage() {
         className={classes.entryContainer}
       >
         <AnimatedDiamond
+          preloaded={preloaded}
           onMouseOver={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         />
-        <DiamondHoverLabel isHovered={isHovered} />
+        {!preloaded && progress}
+        {preloaded && <DiamondHoverLabel isHovered={isHovered} />}
       </div>
     </animated.div>
   );

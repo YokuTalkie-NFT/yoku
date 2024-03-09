@@ -1,5 +1,3 @@
-'use client';
-
 import { animated, useSpring } from '@react-spring/web';
 import { Image } from '@mantine/core';
 import React, { FC } from 'react';
@@ -9,9 +7,14 @@ import classes from './AnimatedDiamond.module.css';
 interface AnimatedMintedNFTProps {
   onMouseOver: () => void;
   onMouseLeave: () => void;
+  preloaded?: boolean;
 }
 
-export const AnimatedDiamond: FC<AnimatedMintedNFTProps> = ({ onMouseOver, onMouseLeave }) => {
+export const AnimatedDiamond: FC<AnimatedMintedNFTProps> = ({
+  onMouseOver,
+  onMouseLeave,
+  preloaded,
+}) => {
   const isMobile = useMediaQuery('(max-width: 768px)');
 
   const diamondAnimation = useSpring({
@@ -37,7 +40,7 @@ export const AnimatedDiamond: FC<AnimatedMintedNFTProps> = ({ onMouseOver, onMou
         className={classes.animatedDiamond}
         src="/assets/images/diamond.png"
       />
-      {isMobile && <div className={classes.diamondLabel}>Touch Me</div>}
+      {preloaded && isMobile && <div className={classes.diamondLabel}>Touch Me</div>}
     </animated.div>
   );
 };
