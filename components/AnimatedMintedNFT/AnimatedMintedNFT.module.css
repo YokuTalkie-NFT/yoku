@@ -1,20 +1,21 @@
 .animatedMintedNFTContainer {
     position: absolute;
-    width: rem(345px);
-    height: rem(461px);
+    width: rem(310px);
+    height: rem(360px);
     left: 50%;
     top: 50%;
-    transform: translate(-44.5%, 30%);
+    transform: translate(-45.5%, 27%);
     z-index: 1;
     background: url("/assets/images/mint/nft-mask.png") no-repeat center center;
+    background-size: contain;
 }
 
 .animatedMintedNFT {
-    width: rem(280px);
-    height: rem(280px);
+    width: rem(220px);
+    height: rem(220px);
     position: absolute;
     left: 50%;
-    top: rem(150px);
+    top: rem(110px);
     transform: translateX(-50%);
     z-index: 10;
     cursor: pointer;
@@ -37,5 +38,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    bottom: 20%;
+    bottom: rem(100px);
+}
+
+@media screen and (min-width: 768px) {
+    .animatedMintedNFTContainer {
+        width: rem(345px);
+        height: rem(461px);
+        transform: translate(-44.5%, 30%);
+    }
+
+    .animatedMintedNFT {
+        width: rem(280px);
+        height: rem(280px);
+        top: rem(150px);
+    }
 }
