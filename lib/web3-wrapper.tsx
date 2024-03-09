@@ -16,7 +16,7 @@ if (!process.env.NEXT_PUBLIC_APP_URL) {
 
 const metadata = {
   name: process.env.NEXT_PUBLIC_APP_NAME as string,
-  description: process.env.NEXT_PUBLIC_APP_DESCRIPTION as string,
+  description: process.env.NEXT_PUBLIC_APP_NAME as string,
   url: process.env.NEXT_PUBLIC_APP_URL,
   icons: [process.env.NEXT_PUBLIC_APP_ICON_URL as string],
 };
