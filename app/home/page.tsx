@@ -5,6 +5,7 @@ import { useWeb3Modal } from '@web3modal/wagmi/react';
 import { useRouter } from 'next/navigation';
 import { animated } from '@react-spring/web';
 import toast from 'react-hot-toast';
+import { useMediaQuery } from '@mantine/hooks';
 import classes from './page.module.css';
 import { AppHeader } from '@/components/AppHeader/AppHeader';
 import MenuItem, { MenuItems } from '@/components/MenuItem/MenuItem';
@@ -24,6 +25,7 @@ export default function HomePage() {
   const mousePosition = useMousePosition();
   const [activeMenu, setActiveMenu] = useState('');
   const { animatedProps, switchTo } = useSwitchPageAnimation();
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   const handleMenuItemClick = (item: MenuItems) => {
     switch (item) {
@@ -79,8 +81,14 @@ export default function HomePage() {
         </div>
         <MenuLabel current={activeMenu} />
         <div className={classes.characterContainer}>
-          <AnimatedCharacterYoyo active={Boolean(activeMenu)} mousePosition={mousePosition} />
-          <AnimatedCharacterKuku active={Boolean(activeMenu)} mousePosition={mousePosition} />
+          <AnimatedCharacterYoyo
+            active={Boolean(activeMenu) || Boolean(isMobile)}
+            mousePosition={mousePosition}
+          />
+          <AnimatedCharacterKuku
+            active={Boolean(activeMenu) || Boolean(isMobile)}
+            mousePosition={mousePosition}
+          />
         </div>
       </div>
     </animated.div>
