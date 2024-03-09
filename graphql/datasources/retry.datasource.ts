@@ -16,7 +16,7 @@ class ApolloRetryDataSource extends RESTDataSource {
   async delayedTask(task: () => Promise<any>): Promise<any> {
     // eslint-disable-next-line no-useless-catch
     try {
-      await this.delay(1000);
+      await this.delay(100);
       return await task();
     } catch (error) {
       throw error;
