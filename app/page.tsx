@@ -22,6 +22,7 @@ export default function EntryPage() {
   const { preloaded, progress } = useImagePreload(preloadImages);
 
   const handleClick = () => {
+    if (!preloaded) return;
     setUrl('/assets/audios/background.mp3');
 
     if (!playing) {
