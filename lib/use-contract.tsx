@@ -14,7 +14,7 @@ export const useYokuTalkieContract = ({
   onStart,
 }: YokuTalkieContractEvents) => {
   const { address } = useAccount();
-  const { writeContract, isSuccess, isError, isPending, data } = useWriteContract();
+  const { writeContract, isSuccess, isError, isPending, error } = useWriteContract();
 
   useReadContract({
     address: process.env.NEXT_PUBLIC_YOKUTALKIE_CONTRACT_ADDRESS as `0x${string}`,
@@ -25,11 +25,10 @@ export const useYokuTalkieContract = ({
 
   useEffect(() => {
     if (isSuccess) {
-      console.log(data);
       onSuccess?.('');
     }
     if (isError) {
-      onError?.(new Error('Failed to mint NFT'));
+      onError?.(error!);
     }
   }, [isSuccess, isError]);
 

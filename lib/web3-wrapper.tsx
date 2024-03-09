@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import { State, WagmiProvider } from 'wagmi';
+import { State, WagmiProvider, cookieStorage, createStorage } from 'wagmi';
 import * as chains from 'wagmi/chains';
 import { createWeb3Modal } from '@web3modal/wagmi/react';
 import { defaultWagmiConfig } from '@web3modal/wagmi';
@@ -23,10 +23,22 @@ const metadata = {
 
 export const config = defaultWagmiConfig({
   ssr: true,
-  chains: [(chains as any)[process.env.NEXT_PUBLIC_APP_DEFAULT_CHAIN as any]],
+  storage: createStorage({
+    storage: cookieStorage,
+  }),
+  chains: [
+    chains.optimism,
+    chains.mainnet,
+    chains.polygon,
+    chains.linea,
+    chains.arbitrum,
+    chains.goerli,
+    chains.sepolia,
+    chains.optimismSepolia,
+  ],
   projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID as string,
   metadata,
-  enableCoinbase: false,
+  enableCoinbase: true,
 });
 
 const queryClient = new QueryClient();

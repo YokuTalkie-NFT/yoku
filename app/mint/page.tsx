@@ -27,8 +27,12 @@ export default function MintPage() {
   const { NFTs, loading, refreshNFTs } = useNFTs(address!);
 
   const { mint, pending } = useYokuTalkieContract({
-    onError: () => {
-      toast('Minting NFT failed', { icon: '❌' });
+    onError: (error) => {
+      if (error.message.includes('exceeds')) {
+        toast('Insufficient balance', { icon: '💰' });
+      } else {
+        toast('Minting NFT failed', { icon: '❌' });
+      }
     },
     onSuccess: async () => {
       await refreshNFTs();
