@@ -29,7 +29,7 @@ export default function MintPage() {
   const { mint, pending } = useYokuTalkieContract({
     onError: (error) => {
       if (error.message.includes('exceeds')) {
-        toast('You can mint with as little as 0.005 ETH', { icon: '💰' });
+        toast('You need at least 0.005 ETH to mint', { icon: '💰' });
       } else {
         toast('Minting NFT failed', { icon: '❌' });
       }
